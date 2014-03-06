@@ -1,0 +1,24 @@
+{
+  "name": "mibox",
+  "version": "0.0.2",
+  "description": "A remote for xiaomi TV.",
+  "main": "lib/mi.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/ivershuo/mibox.git"
+  },
+  "keywords": [
+    "xiaomi",
+    "mibox"
+  ],
+  "author": "ivershuo",
+  "license": "BSD-3-Clause",
+  "readmeFilename": "README.md",
+  "gitHead": "4d3dcb3c50a25b22364945c9bbebd60044b5ff4c"
+}
