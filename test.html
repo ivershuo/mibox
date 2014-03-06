@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>小米电视</title>
+	<script type="text/javascript" src="utils.js"></script>
+	<script type="text/javascript" src="mi.js"></script>
+</head>
+<body>
+<script type="text/javascript">
+	MI.getTvs().then(function(tvs){
+		/*取第一个拿到的设备测试*/
+		var tv = tvs[0];
+		var mi = new MI(tv);
+
+		var keys = ['power', 'menu', 'right', 'left', 'down', 'up', 'enter', 'volumeup', 'volumedown', 'home', 'back'],
+			btns = [];
+		var keyMap = {
+			38 : 'up',
+			40 : 'down',
+			37 : 'left',
+			39 : 'right',
+			13 : 'enter',
+			27 : 'back',
+			32 : 'home',
+			189 : 'volumedown',
+			187 : 'volumeup'
+		};
+		document.addEventListener('click', function(e){
+			var $ = e.target;
+			if($.tagName.toLowerCase() === 'button'){
+				var key = $.innerHTML;
+				mi[key]().then(function(d){
+					console.log(key, '指令发送成功，返回数据：', d);
+				});
+			}
+		});
+		window.addEventListener('keyup', function(e){
+			var key = keyMap[e.keyCode];
+			mi[key] && mi[key]().then(function(d){
+				console.log(key, '指令发送成功，返回数据：', d);
+			});
+		});
+		keys.forEach(function(key){
+			btns.push('<button>' + key + '</button>');
+		});
+		document.body.innerHTML += btns.join('');
+
+		window.mi = mi;
+	});
+</script>
+</body>
+</html>
